@@ -15,5 +15,5 @@ public interface ProductService {
 	void update(Product Product) throws ProductNotFoundException;
 
 	void delete(int id) throws ProductNotFoundException;
-
+    void delete(String name)throws ProductNotFoundException;
 }

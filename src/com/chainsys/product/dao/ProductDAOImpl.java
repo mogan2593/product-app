@@ -11,7 +11,7 @@ import java.util.Set;
 
 import com.chainsys.product.model.Product;
 
-public class ProductDAOImpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO{
 
 	private static Connection con;
 	private static PreparedStatement pstmt;
@@ -124,5 +124,16 @@ public class ProductDAOImpl implements ProductDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public void delete(String p_name) {
+		try {
+			pstmt = con.prepareStatement("delete product_2593 where p_name=?");
+			pstmt.setString(1, p_name);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

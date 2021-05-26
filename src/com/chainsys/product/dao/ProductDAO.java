@@ -11,7 +11,7 @@ public interface ProductDAO {
 	Product findById(int id);
 	void updateexpire(Product Product);
 	void save(Product product);
-
+    void delete(String name);
 	void update(Product product);
 
 	void delete(int id);
