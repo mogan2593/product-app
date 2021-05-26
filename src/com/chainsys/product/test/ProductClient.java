@@ -79,7 +79,20 @@ public class ProductClient {
 			} catch (Exception e) {
 			}
 			break;
-			
+		case 7:
+			System.out.println("Update the expiry date by Id");
+			id=scanner.nextInt();
+			date = "10/08/2021";
+			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			Product updatedate = new Product(id, "Pencil", LocalDate.parse(date, dateFormat));
+			try {
+				service.update(updatedate);
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (ProductNotFoundException e) {
+
+			}
+			break;
 		default:
 			break;
 		}

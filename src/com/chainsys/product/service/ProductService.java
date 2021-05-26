@@ -9,7 +9,7 @@ public interface ProductService {
 	Set<Product> findAll();
 	Product findByName(String name)throws ProductNotFoundException;
 	Product findById(int id) throws ProductNotFoundException;
-
+	void updateexpire(Product Product) throws ProductNotFoundException;
 	void save(Product Product);
 
 	void update(Product Product) throws ProductNotFoundException;
