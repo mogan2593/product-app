@@ -1,6 +1,7 @@
 package com.chainsys.product.dao;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -136,4 +137,31 @@ public class ProductDAOImpl implements ProductDAO{
 		}
 
 	}
+	@Override
+	public Product findBydate(LocalDate date) {
+		Product product = null;
+		try {
+			pstmt = con.prepareStatement("select * from product_2593 where p_expiry_date=?");
+			pstmt.setDate(1, Date.valueOf(date));
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				product = new Product(rs.getInt("p_id"), rs.getString("p_name"), rs.getDate("p_expiry_date").toLocalDate());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
+	}	
+	
+	public void delete_date(LocalDate expiryDate) {
+		try {
+			pstmt = con.prepareStatement("delete product_2593 where p_expiry_date=?");
+			pstmt.setDate(1, Date.valueOf(expiryDate));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.chainsys.product.service;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import com.chainsys.product.dao.ProductDAO;
@@ -84,4 +85,24 @@ public class ProductServiceImpl implements ProductService {
 			dao.delete(name);
 		}
 	}
+	@Override
+	public Product findBydate(LocalDate date)throws ProductNotFoundException{
+		Product product = dao.findBydate(date);
+		if(product == null) {
+			throw new ProductNotFoundException("Product Name Not Found");
+		}
+		else {
+			return product;
+		}
+	}
+	@Override
+	public void delete_date(LocalDate expiryDate) throws ProductNotFoundException {
+		Product product = dao.findBydate(expiryDate);
+		if (product == null) {
+			throw new ProductNotFoundException("Product doesn't exist!!");
+		} else {
+			dao.delete_date(expiryDate);
+		}
+	}
+	
 }

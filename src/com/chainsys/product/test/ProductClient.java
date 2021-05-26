@@ -86,7 +86,7 @@ public class ProductClient {
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 			Product updatedate = new Product(id, "Pencil", LocalDate.parse(date, dateFormat));
 			try {
-				service.update(updatedate);
+				service.updateexpire(updatedate);
 				productSet = service.findAll();
 				System.out.println(productSet);
 			} catch (ProductNotFoundException e) {
@@ -103,6 +103,28 @@ public class ProductClient {
 				System.out.println(productSet);
 			} catch (Exception e) {
 			}
+			break;
+		case 9:
+			System.out.println("Deleting a Product");
+			date = "01/01/23";
+			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			try {
+				service.delete_date(LocalDate.parse(date,dateFormat));
+				productSet = service.findAll();
+				System.out.println(productSet);
+			} catch (Exception e) {
+			}
+			break;
+		case 10:
+			System.out.println("Find product by name");
+			date = "10/08/2021";
+			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+			try {
+				Product product = service.findBydate(LocalDate.parse(date,dateFormat));
+				System.out.println(product);
+			} catch (Exception e) {
+			}
+			break;
 		default:
 			break;
 		}
